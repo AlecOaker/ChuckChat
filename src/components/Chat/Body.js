@@ -7,14 +7,13 @@ const Body = ({ jokeChat, chatItms }) => {
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [jokeChat]);
-
     return (
         <div className="content__body">
             <div className="chat__items">
                 {jokeChat.map((itm) => {
                     return (
                         <ChatItem
-                            key={itm.id}
+                            key={itm.key}
                             msg={itm.msg}
                             image={chatItms.image}
                             type={itm.type}

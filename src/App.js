@@ -9,21 +9,25 @@ const chatItms0 = [
         key: 1,
         type: "me",
         msg: "Hi Chuck, How are you?",
+        time: "18:02 12.04.2022",
     },
     {
         key: 2,
         type: "other",
         msg: "I am fine. And my wife is also good.",
+        time: "18:04 12.04.2022",
     },
     {
         key: 3,
         type: "me",
-        msg: "May I chat something to you and you will tell me some interesting facts about you, but only real?",
+        msg: "May I chat something to you and you will tell me some interesting facts about you, but real only?",
+        time: "18:05 12.04.2022",
     },
     {
         key: 4,
         type: "other",
         msg: "go ahead",
+        time: "18:10 12.04.2022",
     },
 ];
 const chatItms1 = [
@@ -329,7 +333,7 @@ const time =
 
 const uid = +new Date();
 
-function App({ auth, firestore, user }) {
+function App({ auth, user }) {
     const [isSidebar, setSidebar] = useState(true);
     const [isChat, setChat] = useState(true);
 
@@ -355,6 +359,7 @@ function App({ auth, firestore, user }) {
 
     const sendMsg = () => {
         const msgs = {
+            key: uid,
             id: uid,
             user: "me",
             msg: msg,
@@ -372,6 +377,7 @@ function App({ auth, firestore, user }) {
         if (response.ok) {
             let data = await response.json();
             const jokes = {
+                key: data.id,
                 id: data.id,
                 image: data.icon_url,
                 user: "Chuck Norris",
@@ -384,11 +390,10 @@ function App({ auth, firestore, user }) {
             });
         }
     };
-    console.log(jokeChat);
-    const jokeChatLength = jokeChat.length - 1;
-    const lastPhrase = jokeChat[jokeChatLength].msg;
-    const lastTime = jokeChat[jokeChatLength].time;
-    console.log(lastPhrase, lastTime);
+
+    const lastPhrase = jokeChat[jokeChat.length - 1].msg;
+    const lastTime = jokeChat[jokeChat.length - 1].time;
+
     // localStorage.setItem("myMessages", JSON.stringify(jokeChat));
     return (
         <div className="App">
@@ -409,6 +414,8 @@ function App({ auth, firestore, user }) {
                             query={query}
                             setActiveHandler={setActiveHandler}
                             active={active}
+                            lastPhrase={lastPhrase}
+                            lastTime={lastTime}
                         />
                     </div>
                 )}

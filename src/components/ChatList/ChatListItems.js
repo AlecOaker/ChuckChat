@@ -8,6 +8,8 @@ const ChatListItems = ({
     isOnline,
     setActiveHandler,
     id,
+    lastTime,
+    lastPhrase,
 }) => {
     return (
         <button
@@ -18,11 +20,16 @@ const ChatListItems = ({
                 <Avatar image={image} isOnline={isOnline} />
                 <div className="user-name__phrase__wrapper">
                     <p>{name}</p>
-                    <span className="last-phrase">ok, google</span>
+                    <span className="last-phrase">
+                        {lastPhrase && lastPhrase.slice(0, 25)}
+                        {lastPhrase && lastPhrase.length > 25 && "..."}
+                    </span>
                 </div>
             </div>
             <div className="activeTime__wrapper">
-                <span className="activeTime">Jun 12, 2017</span>
+                <span className="activeTime">
+                    {lastTime && lastTime.slice(6, 15)}
+                </span>
             </div>
         </button>
     );

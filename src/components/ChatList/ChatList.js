@@ -2,7 +2,14 @@ import React from "react";
 import "./ChatList.css";
 import ChatListItems from "./ChatListItems";
 
-const ChatList = ({ allChatUsers, query, setActiveHandler, active }) => {
+const ChatList = ({
+    allChatUsers,
+    query,
+    setActiveHandler,
+    active,
+    lastPhrase,
+    lastTime,
+}) => {
     return (
         <div className="chat-list__container">
             <h2 className="chat-list__name">Chats</h2>
@@ -12,7 +19,7 @@ const ChatList = ({ allChatUsers, query, setActiveHandler, active }) => {
                         .filter((item) =>
                             item.name.toLowerCase().includes(query)
                         )
-                        .map((item, index) => {
+                        .map((item) => {
                             return (
                                 <ChatListItems
                                     name={item.name}
@@ -22,6 +29,8 @@ const ChatList = ({ allChatUsers, query, setActiveHandler, active }) => {
                                     setActiveHandler={setActiveHandler}
                                     id={item.id}
                                     active={item.id === active ? "active" : ""}
+                                    lastPhrase={lastPhrase}
+                                    lastTime={lastTime}
                                 />
                             );
                         })}
