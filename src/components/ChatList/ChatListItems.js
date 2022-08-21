@@ -4,10 +4,10 @@ import Avatar from "./Avatar";
 const ChatListItems = ({
     name,
     image,
-    active,
     isOnline,
     setActiveHandler,
     id,
+    active,
     lastTime,
     lastPhrase,
 }) => {
@@ -21,14 +21,14 @@ const ChatListItems = ({
                 <div className="user-name__phrase__wrapper">
                     <p>{name}</p>
                     <span className="last-phrase">
-                        {lastPhrase && lastPhrase.slice(0, 25)}
-                        {lastPhrase && lastPhrase.length > 25 && "..."}
+                        {lastPhrase[id] && lastPhrase[id].slice(0, 25)}
+                        {lastPhrase[id] && lastPhrase[id].length > 25 && "..."}
                     </span>
                 </div>
             </div>
             <div className="activeTime__wrapper">
                 <span className="activeTime">
-                    {lastTime && lastTime.slice(6, 15)}
+                    {lastTime[id] && lastTime[id].slice(0, 12)}
                 </span>
             </div>
         </button>

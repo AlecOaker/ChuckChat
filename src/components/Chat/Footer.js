@@ -1,10 +1,10 @@
 import React from "react";
 
-const Footer = ({ msg, setMsg, sendMsg, getChuckJoke }) => {
+const Footer = ({ msg, setMsg, sendMsg, getChuckJoke, active }) => {
     const onSubmitHandler = (e) => {
         e.preventDefault();
         if (msg) {
-            sendMsg();
+            sendMsg(active);
             setTimeout(() => {
                 getChuckJoke();
             }, 3000);

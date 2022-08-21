@@ -15,6 +15,13 @@ const Chat = ({
     msg,
     setMsg,
     sendMsg,
+    jokeChat0,
+    jokeChat1,
+    jokeChat2,
+    jokeChat3,
+    jokeChat4,
+    jokeChat5,
+    active,
 }) => {
     return (
         <div className="chat__container">
@@ -24,7 +31,17 @@ const Chat = ({
                 friendName={friendName}
                 friendImage={friendImage}
             />
-            <Body jokeChat={jokeChat} chatItms={chatItms} />
+            <Body
+                jokeChat={jokeChat}
+                chatItms={chatItms}
+                jokeChat0={jokeChat0}
+                jokeChat1={jokeChat1}
+                jokeChat2={jokeChat2}
+                jokeChat3={jokeChat3}
+                jokeChat4={jokeChat4}
+                jokeChat5={jokeChat5}
+                active={active}
+            />
             <Footer
                 msg={msg}
                 setMsg={setMsg}

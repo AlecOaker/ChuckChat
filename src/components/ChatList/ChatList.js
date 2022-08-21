@@ -1,23 +1,27 @@
 import React from "react";
 import "./ChatList.css";
 import ChatListItems from "./ChatListItems";
+import * as _ from "lodash";
 
 const ChatList = ({
-    allChatUsers,
     query,
     setActiveHandler,
     active,
     lastPhrase,
     lastTime,
+    allChaters,
 }) => {
     return (
         <div className="chat-list__container">
             <h2 className="chat-list__name">Chats</h2>
             <div className="chatlist__items__wrapper">
                 <div className="chatlist__items">
-                    {allChatUsers
+                    {allChaters
+                        .sort((a, b) => a.chat.time > b.chat.time)
                         .filter((item) =>
-                            item.name.toLowerCase().includes(query)
+                            item
+                                ? item.name.toLowerCase().includes(query)
+                                : null
                         )
                         .map((item) => {
                             return (
@@ -31,6 +35,7 @@ const ChatList = ({
                                     active={item.id === active ? "active" : ""}
                                     lastPhrase={lastPhrase}
                                     lastTime={lastTime}
+                                    activeUser={active}
                                 />
                             );
                         })}
